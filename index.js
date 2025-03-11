@@ -2,38 +2,41 @@
 
 // const variable =null;
 
-const object = {
-  name: "John",
-  age: 30,
-  married: true,
-  sayHello() {
-    console.log(`Hello, my name is ${this.name}`);
-  },
-};
-console.log(object.name);
-object.sayHello();
+// const object = {
+//   name: "John",
+//   age: 30,
+//   married: true,
+//   sayHello() {
+//     console.log(`Hello, my name is ${this.name}`);
+//   },
+// };
+// console.log(object.name);
+// object.sayHello();
 
-const func = (text) => {
-  console.log(text);
-};
+// const func = (text) => {
+//   console.log(text);
+// };
 
-func("some text");
-//
-const obj={
-  key: 'value',
-      b:"value",
-  a:'value'
-}
+// func("some text");
+// //
+// const obj={
+//   key: 'value',
+//       b:"value",
+//   a:'value'
+// }
 // console.log(obj)
 // const array=[1,2,3,4,5,6,7,8,9,10];
 // console.log(array[10])
 // const obj2=object;
-const array=[1,2,3,4,5,6,7,8,9,10];
+
+
+// const array=[1,2,3,4,5,6,7,8,9,10];
 // array.push(11)
 // console.log(array.reverse())
 // console.log(array.pop())
 // const removed=array.pop()
 // console.log(removed)
+const array=[1,2,3,4,5,6,7,8,9,10];
 // const el=array.indexOf(5)
 //     array.splice(el,1,'five')
 // console.log(array)
@@ -92,3 +95,4 @@ const getDayName=(dayNumber)=>{
   }
 }
 getDayName(5)
+
