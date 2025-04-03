@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: rgb(54, 69, 79);
+}
+.app-wrapper {
+    margin-top: 100px;
+    width: 400px;
+    background-color: rgb(230, 230, 250);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+ul {
+    margin: 10px 30px;
+}
+ul li {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+.check-box {
+    margin-right: 10px;
+}
+.line-through {
+    text-decoration: line-through;
+}
+
+.btn__delete {
+    background-image: url(https://cdn-icons-png.flaticon.com/128/1214/1214428.png);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    margin-left: 20px;
+}
+.btn__edit {
+    background-image: url(https://cdn-icons-png.flaticon.com/128/1159/1159633.png);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+}
+.btn__add {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    color: rgb(54, 69, 79);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#task {
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+}
