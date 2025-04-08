@@ -1,0 +1,18 @@
+.accordion {
+    border: 1px solid orange;
+    padding: 5px;
+}
+.accordion__item {
+    border: 1px solid grey;
+    padding: 5px;
+}
+.accordion__header {
+    background-color: bisque;
+    padding: 10px;
+}
+.accordion__content {
+    display: none;
+}
+.accordion__item.active .accordion__content {
+    display: block;
+}
