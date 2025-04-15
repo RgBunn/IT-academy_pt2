@@ -43,5 +43,3 @@
 //         .then(res => res.json())
 //         .then(data => console.log(data))
 
-const a="Hello Avito";
-console.log(a.split(' ')[1][0])
