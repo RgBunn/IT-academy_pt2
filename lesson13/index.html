@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <form class="m-3 ">
+        <select name="q" class="form-select form-select-lg mb-3" aria-label="Large select example">
+            <option selected value="minsk">Minsk</option>
+            <option value="gomel">Gomel</option>
+            <option value="vitebsk">Vitebsk</option>
+        </select>
+        <div class="form-check">
+            <input class="form-check-input"
+                   type="radio" name="units"
+                   id="radioDefault1" value="imperial">
+            <label class="form-check-label" for="radioDefault1">
+                Imperial
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input"
+                   type="radio" name="units"
+                   id="radioDefault2" value="metric" checked>
+            <label class="form-check-label" for="radioDefault2">
+                Metrics
+            </label>
+        </div>
+        <input type="hidden" name="lat">
+        </input>
+        <input type="hidden" name="lon">
+        </input>
+        <select name="lang" class="form-select form-select-lg mb-3" >
+            <option selected value="ru">Russian</option>
+            <option value="en">English</option>
+
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div id="weatherContainer"></div>
+</main>
+<template id="templateCard">
+    <div class="card" style="max-width: 320px; width:100%">
+        <img class="card-img-top" alt="..." style="width:100px; display:block; margin:0 auto">
+        <div class="card-body">
+            <h4 class="card-title text-center" id="desc"></h4>
+            <h5 class="card-title text-center" id="time"></h5>
+            <p class="card-text text-center" id="temp"></p>
+            <p class="card-text text-center" id="feelsLike"></p>
+            <p class="card-text text-center" id="sun"></p>
+
+        </div>
+    </div>
+</template>
+<script src="sctipt.js"></script>
+
+</body>
+</html>
