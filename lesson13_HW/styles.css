@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+#board-container {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+.task-container {
+    flex: 1;
+}
+.task-title {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    border-radius: 25px;
+}
+#backlog .task-title {
+    background-color: rgb(187, 126, 217);
+}
+#in-progress .task-title {
+    background-color: rgb(238, 134, 99);
+}
+#completed .task-title {
+    background-color: rgb(128, 221, 128);
+}
+.task {
+    border: 1px solid lavender;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
