@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f50672-4a03-4bbd-9b35-b6307f987482" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lesson13/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson13/sctipt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson13/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson15/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson15/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson13/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lesson13/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson13/sctipt.js" beforeDir="false" afterPath="$PROJECT_DIR$/lesson13/sctipt.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,5 +83,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$USER_HOME$/Downloads/index 3.js</url>
+          <line>148</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

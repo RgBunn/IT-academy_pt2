@@ -15,10 +15,16 @@
     <form class="m-3 ">
         <select name="q" class="form-select form-select-lg mb-3" aria-label="Large select example">
             <option selected value="minsk">Minsk</option>
-            <option value="gomel">Gomel</option>
+            <option value="toronto">Toronto</option>
             <option value="vitebsk">Vitebsk</option>
         </select>
-        <div class="form-check">
+
+        <select name="lang" class="form-select form-select-lg mb-3" >
+            <option selected value="ru">Russian</option>
+            <option value="en">English</option>
+        </select>
+
+        <div class="form-check mb-3">
             <input class="form-check-input"
                    type="radio" name="units"
                    id="radioDefault1" value="imperial">
@@ -26,7 +32,7 @@
                 Imperial
             </label>
         </div>
-        <div class="form-check">
+        <div class="form-check mb-3 pb-3 border-bottom">
             <input class="form-check-input"
                    type="radio" name="units"
                    id="radioDefault2" value="metric" checked>
@@ -34,15 +40,27 @@
                 Metrics
             </label>
         </div>
-        <input type="hidden" name="lat">
-        </input>
-        <input type="hidden" name="lon">
-        </input>
-        <select name="lang" class="form-select form-select-lg mb-3" >
-            <option selected value="ru">Russian</option>
-            <option value="en">English</option>
 
-        </select>
+        <input type="hidden" name="lat">
+        <input type="hidden" name="lon">
+
+        <div class="form-check mb-3 ">
+            <input class="form-check-input"
+                   type="radio" name="apiType"
+                   id="type_1" value="weather">
+            <label class="form-check-label" for="type_1">
+               Current weather
+            </label>
+        </div>
+
+        <div class="form-check mb-3 pb-3 border-bottom">
+            <input class="form-check-input"
+                   type="radio" name="apiType"
+                   id="type_2" value="forecast" checked>
+            <label class="form-check-label" for="type_2">
+                Forecast
+            </label>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <div id="weatherContainer"></div>
@@ -61,6 +79,5 @@
     </div>
 </template>
 <script src="sctipt.js"></script>
-
 </body>
 </html>

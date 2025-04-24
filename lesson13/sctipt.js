@@ -1,76 +1,16 @@
-// const weatherForm=document.forms[0];
-//
-// const getRequestUrl=(params)=>{
-//     const API_HOST='https://api.openweathermap.org';
-//     const API_KEY='141f270750ed670f402ec5b3eca60c56';
-//     const url=new URL(API_HOST);
-//     url.pathname="geo/1.0/direct"
-//     url.searchParams.set('appid',API_KEY);
-//     Object.entries(params).forEach(([key,value]) => {
-//         url.searchParams.set(key,value)
-//     })
-// return url;
-// };
-//
-// const getGeoProps=(form)=>{
-//     const q=form.target.elements.q.value;
-//     return {
-//         q:q
-//     }
-// }
-// const getGeoProps=(form)=>{
-//     const lon=form.elements.lon.value;
-//     const lan=form.elements.lan.value;
-//     return {
-//         q:q
-//     }
-// }
-//
-// const getGeolocation=async(form)=>{
-//     const props=getGeoProps(form);
-//     const url=getRequestUrl(props);
-//     const res=await fetch(url);
-//     return await res.json();
-//
-// }
-//
-// const setGeolocation=(form, cityGeo)=>{
-//     form.elements.lat.value=cityGeo[0].lat;
-//     form.elements.lon.value=cityGeo[0].lon;
-//
-// }
-//
-// weatherForm.addEventListener('change',async(event)=>{
-//     if(event.target.name==='q'){
-//         const form=event.currentTarget;
-//         const cityGeo=await getGeolocation(form);
-//        setGeolocation(form, cityGeo);
-//     }
-// })
-//
-// weatherForm.addEventListener('submit',(event)=>{
-//     event.preventDefault();
-//    const props=getWeatherProps(event.target);
-//    const url=getRequestUrl(props);
-//     fetch(url)
-// })
-//
-// weatherForm.element.q.dispatchEvent(new Event('change',{bubbles:true}));
-////////////////////////////////////
+
 const weatherForm = document.forms[0];
 
-const DICTIONARY={
-    ru:{
-        temp: "температура",
-        feelsLike:'Ощущается как'
+const DICTIONARY = {
+    ru: {
+        temp: "Температура",
+        feelsLike: "Ощущается как"
     },
-    en:{
-        temp:'Temperature',
-        feelsLike:'Feels like'
+    en: {
+        temp: "Temperature",
+        feelsLike: "Feels like",
     }
-
 }
-
 
 
 const apiTypes = {
@@ -81,7 +21,7 @@ const apiTypes = {
 
 const getRequestUrl = (params, apiType = "geo") => {
     const API_HOST = "http://api.openweathermap.org";
-    const API_KEY = "141f270750ed670f402ec5b3eca60c56";
+    const API_KEY = "a5fc8be9dcd685b1f8c7d30b239a69c1";
     const url = new URL(API_HOST);
     const APIS = {
         weather: '/data/2.5/weather',
@@ -132,58 +72,147 @@ const setGeolocation = (form, cityGeo) => {
     form.elements.lat.value = cityGeo[0].lat;
     form.elements.lon.value = cityGeo[0].lon;
 }
+
 const blockUI = (elem) => {
     elem.classList.add('loader');
-};
+}
 
-const unblockUI = (elem) => {
+const unBlockUI = (elem) => {
     elem.classList.remove('loader');
-};
-const getWeather = async (form) => {
+}
+
+const startApp = async (form) => {
     const props = getWeatherProps(form);
-    const url = getRequestUrl(props, apiTypes.weather);
+    const apiType = form.elements.apiType.value
+    const url = getRequestUrl(props, apiType);
     let data;
+
     blockUI(form)
-    try{
-    const res = await fetch(url);
-  data=await res.json();
-    }catch(err){
-        console.error(err);
-        data=[];
+    try {
+        const res = await fetch(url);
+        data = await res.json();
+    } catch (e) {
+        console.error(e);
+        data = [];
     }
-    unblockUI(form)
-    return data;
+    unBlockUI(form);
+
+    apiType === apiTypes.weather ? renderWeather(data) : renderForecast(data);
 }
 
 const renderWeather = (weather) => {
-const weatherContainer=document.querySelector('#weatherContainer');
-const currentLang=weatherForm.elements.lang.value;
-    const template=document.querySelector('#templateCard').content.cloneNode(true);
-const time=new Date(weather.dt *1000).toLocaleString(currentLang,{
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-});
+    const weatherContainer = document.querySelector('#weatherContainer');
+    const currentLang = weatherForm.elements.lang.value;
+    const template = document.querySelector('#templateCard').content.cloneNode(true);
+    const time = new Date(weather.dt * 1000).toLocaleDateString(currentLang, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    })
+/////////////
+    const sunriseUTC = weather.sys.sunrise * 1000;
+    const sunsetUTC = weather.sys.sunset * 1000;
 
 
-const sunrise=new Date(weather.sys.sunrise *1000).toLocaleTimeString(currentLang,{
-    hour:'numeric',
-    minute:'numeric',
-})
-    const sunset=new Date(weather.sys.sunset *1000).toLocaleTimeString(currentLang,{
-        hour:'numeric',
-        minute:'numeric',
+    const formatter = new Intl.DateTimeFormat(currentLang, {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
+    });
+
+
+    const sunrise = formatter.format(new Date(sunriseUTC + weather.timezone * 1000));
+    const sunset = formatter.format(new Date(sunsetUTC + weather.timezone * 1000));
+
+////////////
+    // const sunrise = new Date((weather.sys.sunrise + weather.timezone) * 1000).toLocaleTimeString(currentLang, {
+    //     hour: 'numeric',
+    //     minute: 'numeric',
+    // })
+    // const sunset = new Date((weather.sys.sunset + weather.timezone) * 1000).toLocaleTimeString(currentLang, {
+    //     hour: 'numeric',
+    //     minute: 'numeric',
+    // })
+
+
+
+    template.querySelector('img').src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
+    template.querySelector("#time").innerText = time
+    template.querySelector('#desc').innerText = weather.weather[0].description;
+    template.querySelector('#temp').innerText = `${DICTIONARY[currentLang].temp} ${weather.main.temp}`;
+    template.querySelector('#feelsLike').innerText = `${DICTIONARY[currentLang].feelsLike} ${weather.main.feels_like}`;
+    template.querySelector('#sun').innerText = `${sunrise} - ${sunset}`;
+
+    weatherContainer.innerHTML = '';
+    weatherContainer.append(template);
+}
+
+const buildForecastGroup = (data) => {
+    const containerDiv = document.createElement('div');
+    const divDay = document.createElement('div');
+    const divNight = document.createElement('div');
+
+    containerDiv.append(divDay, divNight);
+    containerDiv.classList.add('p-3', 'border', 'm-b-3')
+
+    if (data.d) {
+        divDay.append(...data.d.map(buildForecastItem));
+    }
+    if (data.n) {
+        divNight.append(...data.n.map(buildForecastItem))
+    }
+
+    return containerDiv
+}
+
+const buildForecastItem = (data) => {
+    const currentLang = weatherForm.elements.lang.value;
+    const template = document.querySelector('#templateCard').content.cloneNode(true);
+    const time = new Date(data.dt * 1000).toLocaleDateString(currentLang, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
     })
 
-    template.querySelector('img').src=`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-    template.querySelector('#time').innerText=time;
-    template.querySelector('#desc').innerText= `${weather.weather[0].description}`;
-    template.querySelector('#temp').innerText=`${DICTIONARY[currentLang].temp} ${weather.main.temp}`;
-    template.querySelector('#feelsLike').innerText=`${DICTIONARY[currentLang].feelsLike} ${weather.main.feels_like}`;
-    template.querySelector('#sun').innerText=`${sunrise} - ${sunset}`;
+    template.querySelector('img').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+    template.querySelector("#time").innerText = time
+    template.querySelector('#desc').innerText = data.weather[0].description;
+    template.querySelector('#temp').innerText = `${DICTIONARY[currentLang].temp} ${data.main.temp}`;
+    template.querySelector('#feelsLike').innerText = `${DICTIONARY[currentLang].feelsLike} ${data.main.feels_like}`;
 
-    weatherContainer.innerHTML='';
-    weatherContainer.append(template);
+    return template;
+}
+
+const transformForecast = (items) => {
+    return items.reduce((acc, item) => {
+        const day = item.dt_txt.split(' ')[0]
+        const partOfDay = item.sys.pod;
+        if (acc[day]) {
+            if (acc[day][partOfDay]) {
+                acc[day][partOfDay].push(item)
+            } else {
+                acc[day] = {
+                    ...acc[day],
+                    [partOfDay]: [item],
+                }
+            }
+        } else {
+            acc[day] = {
+                [partOfDay]: [item],
+            }
+        }
+        return acc;
+    }, {})
+}
+
+const renderForecast = (data) => {
+    const weatherContainer = document.querySelector('#weatherContainer');
+    const transformedList = transformForecast(data.list);
+    const items = Object.values(transformedList).map(buildForecastGroup);
+
+    weatherContainer.innerHTML = '';
+    weatherContainer.append(...items);
+
 }
 
 weatherForm.addEventListener("change", async (event) => {
@@ -196,15 +225,7 @@ weatherForm.addEventListener("change", async (event) => {
 
 weatherForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const weather = await getWeather(event.target);
-    renderWeather(weather);
-
+    startApp(event.target);
 })
 
 weatherForm.elements.q.dispatchEvent(new Event('change', {bubbles: true}));
-
-
-
-
-/////////////////////////////////////
-
