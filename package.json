@@ -1,0 +1,22 @@
+{
+  "name": "base_template",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RgBunn/IT-academy_pt2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RgBunn/IT-academy_pt2/issues"
+  },
+  "homepage": "https://github.com/RgBunn/IT-academy_pt2#readme",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.99.8"
+  }
+}
