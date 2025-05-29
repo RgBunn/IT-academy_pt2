@@ -1,5 +1,15 @@
 import './styles/main.css';
 
-import SVG from '@Public/assets/test.svg';
+// import SVG from '@Public/assets/test.svg';
 
-console.log('dgsdgag')
+class Hello{
+    constructor(){}
+}
+class SecondHello extends Hello{
+    constructor(    ) {
+        super();
+
+
+
+    }
+}
