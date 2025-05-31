@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import globals from "globals";
 import json from "@eslint/json";
 import { defineConfig } from "eslint/config";
-import eslintPluginPrettier from "eslint-plugin-prettier";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 
 export default defineConfig([
@@ -13,6 +13,6 @@ export default defineConfig([
     },
   { files: ["./src/**/*.{js,mjs,cjs}"], languageOptions: { globals: globals.browser } },
   { files: ["./src/**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
-  { files: ["./src/**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
+  { files: ["./src/**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"],eslintPluginPrettierRecommended },
   { files: ["./src/**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
 ]);
