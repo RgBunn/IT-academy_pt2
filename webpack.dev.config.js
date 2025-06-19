@@ -10,7 +10,7 @@ module.exports=merge(common,{
     devServer:{
         port:3666,
         hot:true,
-        open:false,
+        open:true,
     },
     devtool:'source-map',
     plugins:[
