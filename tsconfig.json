@@ -3,7 +3,8 @@
     "target": "ESNext",
     "module": "ESNext",
     "esModuleInterop": true,
-"allowJs": true,
+    "noImplicitAny": true,
+    "allowJs": true,
     "strict": false,
     "skipLibCheck": true,
     "outDir": "dist",
@@ -11,9 +12,15 @@
     "incremental": true,
     "rootDir": "./src",
     "baseUrl": "./",
+    "paths": {
+      "@Public/*": [
+        "../public/*"
+      ]
+    }
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./types/**/*"
   ],
   "exclude": [
     "node_modules"

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "cross-env webpack serve --config webpack.dev.config.js ",
     "build": "webpack --config webpack.build.config.js",
+    "typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
