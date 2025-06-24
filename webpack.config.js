@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 console.log(process.env.MODE)
 
 module.exports={
-    entry:"./src/index.js",
+    entry:"./src/index.ts",
     output:{
         assetModuleFilename: 'assets/[name][ext]',
         publicPath:'/',
@@ -16,13 +16,18 @@ module.exports={
 
     devtool:'source-map',
     resolve:{
-        extensions:['.js','.css','.scss'],
+        extensions:['.js','.ts','.css','.scss'],
         alias:{
         "@Public":path.resolve(__dirname,'public'),
         }
     },
 module: {
     rules: [
+        {
+           test:/\.m?ts/,
+            exclude:/node_modules/,
+            loader: 'ts-loader',
+        },
         {
             test: /\.m?js$/,
             exclude: /node_modules/,

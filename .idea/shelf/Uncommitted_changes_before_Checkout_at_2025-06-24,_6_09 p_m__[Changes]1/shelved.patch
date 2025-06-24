@@ -1,0 +1,31 @@
+Index: webpack.config.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const path =require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst MiniCssExtractPlugin = require(\"mini-css-extract-plugin\");\n\n\nconsole.log(process.env.MODE)\n\nmodule.exports={\n    entry:\"./src/index.js\",\n    output:{\n        assetModuleFilename: 'assets/[name][ext]',\n        publicPath:'/',\n        path:path.resolve(__dirname,\"./dist\"),\n        clean:true\n    },\n\n    devtool:'source-map',\n    resolve:{\n        extensions:['.js','.css','.scss'],\n        alias:{\n        \"@Public\":path.resolve(__dirname,'public'),\n        }\n    },\nmodule: {\n    rules: [\n        {\n            test: /\\.m?js$/,\n            exclude: /node_modules/,\n            use: {\n                loader: \"babel-loader\",\n                options: {\n                    presets: ['@babel/preset-env']\n                }\n                }},\n        {\n            test: /.s[a|c]ss$/,\n            use: [MiniCssExtractPlugin.loader, {\n                loader: 'css-loader',\n                options: {sourceMap: true}\n            }, {\n                loader: 'sass-loader',\n                options: {sourceMap: true}\n            }],\n        },\n        {\n            test: /.css$/,\n            use: [MiniCssExtractPlugin.loader, {\n                loader: 'css-loader',\n                options: {sourceMap: true}\n            }],\n        },\n        {\n            test: /.(svg|png|jpg|jpeg|gif)$/,\n            type: 'asset/resource',\n        }\n    ]\n},\n    plugins:[new HtmlWebpackPlugin(\n        {\n            template:path.resolve(__dirname,\"./public/index.html\"),\n            inject:'body',\n            title:'Webpack App'\n        }\n    )\n        ]\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/webpack.config.js b/webpack.config.js
+--- a/webpack.config.js	(revision f61e187d2bfeb4afe4c1f8372cbc24aa268bd3f7)
++++ b/webpack.config.js	(date 1750357414608)
+@@ -6,7 +6,7 @@
+ console.log(process.env.MODE)
+ 
+ module.exports={
+-    entry:"./src/index.js",
++    entry:"./src/index.ts",
+     output:{
+         assetModuleFilename: 'assets/[name][ext]',
+         publicPath:'/',
+@@ -24,6 +24,11 @@
+ module: {
+     rules: [
+         {
++            test:/\.m?ts/,
++            exclude: /node_modules/,
++            loader:"ts-loader"
++        },
++        {
+             test: /\.m?js$/,
+             exclude: /node_modules/,
+             use: {
