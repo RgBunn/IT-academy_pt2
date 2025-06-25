@@ -33,19 +33,23 @@
 //     genre: ["test"],
 // })
 ////////////////////////////
-type MovieID=string | number;
- type Movie= {
-     title: string;
-     id:MovieID;
-    rating?: number;
+// type MovieID=string | number;
+//  type Movie= {
+//      title: string;
+//      id:MovieID;
+//     rating?: number;
+// };
+// // type RequiredMovie= Movie;
+// type ConvertMovie=(movie:Movie)=>Movie
+//  const convertMovie: ConvertMovie=(movie:Movie)=>{
+// return movie;
+//  }
+// convertMovie({
+//     title:"test",
+//     id:1,
+//
+// })
+type Calc=(a:number, b:number)=>number;
+export const calc(a,b)=>{
+    return a + b;
 };
-// type RequiredMovie= Movie;
-type ConvertMovie=(movie:Movie)=>Movie
- const convertMovie: ConvertMovie=(movie:Movie)=>{
-return movie;
- }
-convertMovie({
-    title:"test",
-    id:1,
-
-})
