@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
+
 </head>
 <body>
 <div class="tetris-wrapper">
@@ -16,17 +16,20 @@
     <div class="dashboard">
         <div class="next-tetromino_container" id="mini-grid"></div>
         <div class="button-box">
-            <button id="btn-pause" class="btn">Pause</button>
+            <button id="btn-pause" class="comic-punch-button">Pause</button>
         </div>
         <div class="score-container">score<span id="game-score">0</span></div>
         <div class="level-container">level <span id="game-level">1</span></div>
+        <div id="level-up-animation" class="level-up-hidden">
+            <img src="./images/level-up.png" alt="Level Up!">
+        </div>
     </div>
     <dialog class="modal" id="game-over__modal">
         <h1>Game over!</h1>
         <div class="final-score__container">
             your score is: <span id="final-score"></span>
         </div>
-        <form action="" id="add-name__form">
+        <form id="add-name__form">
             <input
                     type="text"
                     name="player"
@@ -34,9 +37,10 @@
             />
             <button class="comics-style-btn">Add name</button>
         </form>
+        <div id="submission-feedback"></div>
         <h2>Leaderboard</h2>
         <ul id="leaderboard-list"></ul>
-        <button class="comics-style-btn" id="play-again__button">
+        <button class="comic-punch-button" id="play-again__button">
             Play again
         </button>
     </dialog>
