@@ -6,44 +6,41 @@ const finalScoreContainer = document.querySelector("#final-score");
 const leaderboardContainer = document.querySelector("#leaderboard-list");
 const playAgainButton = document.querySelector("#play-again__button");
 
-    addNameForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const playerName = addNameForm.elements.player.value.trim();
-        const input = addNameForm.elements.player;
+addNameForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-        if (!playerName) {
-            input.classList.add("shake");
-            setTimeout(() => {
-                input.classList.remove("shake");
-            }, 400);
-            return;
-        }
+    const playerName = addNameForm.elements.player.value.trim();
+    const input = addNameForm.elements.player;
 
-        const stored = localStorage.getItem("leaderboard");
-        const leaderboard = stored ? JSON.parse(stored) : [];
+    if (!playerName) {
+        input.classList.add("shake");
+        setTimeout(() => {
+            input.classList.remove("shake");
+        }, 400);
+        return;
+    }
 
-        const existing = leaderboard.find((entry) => entry.name === playerName);
+    const stored = localStorage.getItem("leaderboard");
+    let leaderboard = stored ? JSON.parse(stored) : [];
 
-        if (existing) {
-            if (gameScore > existing.score) {
-                existing.score = gameScore;
-            }
-        } else {
-            leaderboard.push({ name: playerName, score: gameScore });
-        }
+    const sameScoreEntry = leaderboard.find((entry) => entry.score === gameScore);
 
-        leaderboard.sort((a, b) => b.score - a.score);
-        leaderboard.splice(10); // keep top 10
+    if (sameScoreEntry) {
+        sameScoreEntry.name = playerName;
+    } else {
+        leaderboard.push({ name: playerName, score: gameScore });
+    }
+    leaderboard.sort((a, b) => b.score - a.score);
+    leaderboard = leaderboard.slice(0, 5);
 
-        localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 
-        updateLeaderboard();
-        finalScoreContainer.textContent = gameScore;
-        addNameForm.elements.player.value = "";
-        addNameForm.style.display = "none";
-        showHighScoreImage()
-
-    });
+    updateLeaderboard();
+    finalScoreContainer.textContent = gameScore;
+    addNameForm.elements.player.value = "";
+    addNameForm.style.display = "none";
+    showHighScoreImage();
+});
 
 function updateLeaderboard() {
     const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
