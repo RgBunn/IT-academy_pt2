@@ -1,4 +1,3 @@
-// ui.js
 import {miniGridCells} from "./grid";
 import {gameIsPaused, gameIsOver, currentLevel, gameScore, pauseTheGame} from "./game-logic";
 

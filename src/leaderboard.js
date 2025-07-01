@@ -1,7 +1,5 @@
-// leaderboard.js
-import {gridCells} from "./grid";
 import {gameScore, resetGame} from "./game-logic";
-import {showLowScoreImage,showHighScoreImage} from "./UI";
+import {showHighScoreImage} from "./UI";
 
 const addNameForm = document.querySelector("#add-name__form");
 const finalScoreContainer = document.querySelector("#final-score");

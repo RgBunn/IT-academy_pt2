@@ -1,4 +1,3 @@
-// tetromino.js
 import {gridCells,width} from "./grid";
 import {currentLevel,gameIsPaused,lockedCells} from "./game-logic";
 import { spawnNewTetromino, clearFullRows } from "./game-logic";

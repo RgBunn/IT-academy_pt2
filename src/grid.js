@@ -1,4 +1,3 @@
-// grid.js
 export const tetrisGrid = document.querySelector("#tetris-grid");
 export const gridCells = [];
 

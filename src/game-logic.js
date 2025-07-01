@@ -1,6 +1,5 @@
-// game-logic.js
 import {gridCells,width} from "./grid";
-import {Tetromino, getRandomTetromino} from "./tetromino";
+import {getRandomTetromino} from "./tetromino";
 import {
     gameScoreContainer, updateLevelDisplay,
     showNextTetromino, gameOverModal, updateFinalScore,
